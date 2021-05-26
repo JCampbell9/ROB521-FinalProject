@@ -123,3 +123,10 @@ class MoveBlock:
             time.sleep(time_delay)
 
 
+
+
+if __name__ == '__main__':
+
+    move = MoveBlock
+
+    move.main(target_loc=(2.06, 23.6, 1.5), goal_loc=(-15 + 0.5, 12 - 0.5, 1.5), rect=90)
