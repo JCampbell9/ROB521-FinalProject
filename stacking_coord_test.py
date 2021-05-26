@@ -2,8 +2,8 @@
 # coding=utf8
 
 
-import Motion
-import Perception
+import Camera_Motion
+import CameraPerception
 
 import sys
 
@@ -29,8 +29,8 @@ def test_motion(target_color='red'):
     my_camera = Camera.Camera()
     my_camera.camera_open()
     img = my_camera.frame
-    camera_perception =Perception.Perception()
-    motion = Motion.MoveBlock()
+    camera_perception = CameraPerception.Perception()
+    motion = Camera_Motion.MoveBlock()
 
     while True:
         img = my_camera.frame
@@ -83,7 +83,7 @@ def camera_test():
     my_camera = Camera.Camera()
     my_camera.camera_open()
     img = my_camera.frame
-    camera_perception = Perception.Perception()
+    camera_perception = CameraPerception.Perception()
     i = 0
     while True:
 
