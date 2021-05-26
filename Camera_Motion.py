@@ -33,6 +33,13 @@ class MoveBlock:
         }
 
     def main(self, target_loc, goal_loc, rect):
+        """
+        Runs the basic pick and place by giving the blocks location and desire goal location
+        :param target_loc: where the block is located, (x,y,z)
+        :param goal_loc: where the robot should drop the block, (x,y,z)
+        :param rect: the rect from perception class used for angle sometimes
+        :return:
+        """
 
         self.init_pose()
 
@@ -61,25 +68,48 @@ class MoveBlock:
         self.init_pose()
 
     def init_pose(self):
+        """
+        Starting and ending pose
+        :return:
+        """
         Board.setBusServoPulse(1, self.gripper_close - 50, 300)
         Board.setBusServoPulse(2, 500, 500)
         self.AK.setPitchRangeMoving((0, 10, 10), -30, -30, -90, 1500)
         time.sleep(1.5)
 
     def open_gripper(self):
+        """
+        Opens the Gripper
+        :return:
+        """
         Board.setBusServoPulse(1, self.gripper_close - 280, 500)  # Paws open
         time.sleep(0.5)
 
     def angle_gripper(self, loc):
+        """
+        Sets the angle of the gripper based off the target location
+        :param loc: target location (x,y,z)
+        :return:
+        """
         gripper_angle = getAngle(loc)
         Board.setBusServoPulse(2, gripper_angle, 500)
         time.sleep(0.8)
 
     def close_gripper(self):
+        """
+        Closes the gripper
+        :return:
+        """
         Board.setBusServoPulse(1, self.gripper_close, 500)  # Paws open
         time.sleep(0.8)
 
     def move_arm(self, target_loc, time_delay):
+        """
+        Moves the arm to a desired location
+        :param target_loc: location to move arm to (x,y,z)
+        :param time_delay: set time delay for arm moving, mseconds
+        :return:
+        """
 
         if not time_delay:
             result = self.AK.setPitchRangeMoving(target_loc, -90, -90, 0)
