@@ -40,20 +40,26 @@ class MoveBlock:
         :param rect: the rect from perception class used for angle sometimes
         :return:
         """
-
+        print('\n step initial pose \n')
         self.init_pose()
-
+        print('\n move above block \n')
         # move above the target block
         if not self.move_arm((target_loc[0], target_loc[1], target_loc[2]+3), time_delay=False):
             print("target location is unreachable")
             return False
+        print('\n open gripper \n')
+
         # get the gripper ready to pick up block
         self.open_gripper()
+        print('\n angle gripper \n')
         self.angle_gripper((target_loc[0], target_loc[1], rect[2]))
         # Grab the block
-        self.move_arm(target_loc, time_delay=1.5)
+        print('\n lower arm \n')
+        self.move_arm((target_loc[0], target_loc[1], target_loc[2]), time_delay=1.5)
+        print('\n close gripper \n')
         self.close_gripper()
         # lift block up
+        print('\n lift block up')
         self.move_arm((target_loc[0], target_loc[1], target_loc[2] + 10), time_delay=1)
         # move block above goal location
         self.move_arm((goal_loc[0], goal_loc[1], goal_loc[2] + 8), time_delay=False)
@@ -91,7 +97,7 @@ class MoveBlock:
         :param loc: target location (x,y,z)
         :return:
         """
-        gripper_angle = getAngle(loc)
+        gripper_angle = getAngle(loc[0], loc[1], loc[2])
         Board.setBusServoPulse(2, gripper_angle, 500)
         time.sleep(0.8)
 
@@ -111,22 +117,24 @@ class MoveBlock:
         :return:
         """
 
-        if not time_delay:
+        if time_delay == False:
             result = self.AK.setPitchRangeMoving(target_loc, -90, -90, 0)
-            if not result:
+            if result == False:
                 return False
             time.sleep(result[2] / 1000)
         else:
-            result = self.AK.setPitchRangeMoving(target_loc, -90, -90, 0, time_delay * 1000)
+            result = self.AK.setPitchRangeMoving(target_loc, -90, -90, 0, int(time_delay * 1000))
             if not result:
                 return False
             time.sleep(time_delay)
+        return True
 
 
 
 
 if __name__ == '__main__':
 
-    move = MoveBlock
+    move = MoveBlock()
 
     move.main(target_loc=(2.06, 23.6, 1.5), goal_loc=(-15 + 0.5, 12 - 0.5, 1.5), rect=90)
+#    move.init_pose()

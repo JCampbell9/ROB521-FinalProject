@@ -32,7 +32,9 @@ def test_motion(target_color='red'):
             Frame, coordinates, rect = camera_perception.main(frame)
             cv2.imshow('Frame', Frame)
             print(f'\n\n MADE IT    Coordinates:  {coordinates} \n\n')
+            print(f'\n\n target loc: {coordinates[0]}, {coordinates[1]}, 1.5 \n\n')
             camera_motion.main(target_loc=(coordinates[0], coordinates[1], 1.5), goal_loc=goal_coordinates[target_color], rect=rect)
+            break
 
 
 def camera_test():
