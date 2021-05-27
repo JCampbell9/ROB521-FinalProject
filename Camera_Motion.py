@@ -19,7 +19,9 @@ if sys.version_info.major == 2:
 
 
 class MoveBlock:
-
+    """
+    Class that moves the arm to given locations
+    """
     def __init__(self):
         self.AK = ArmIK()
 
@@ -40,26 +42,26 @@ class MoveBlock:
         :param rect: the rect from perception class used for angle sometimes
         :return:
         """
-        print('\n step initial pose \n')
+        # print('\n step initial pose \n')
         self.init_pose()
-        print('\n move above block \n')
+        # print('\n move above block \n')
         # move above the target block
         if not self.move_arm((target_loc[0], target_loc[1], target_loc[2]+3), time_delay=False):
-            print("target location is unreachable")
+            # print("target location is unreachable")
             return False
-        print('\n open gripper \n')
+        # print('\n open gripper \n')
 
         # get the gripper ready to pick up block
         self.open_gripper()
-        print('\n angle gripper \n')
+        # print('\n angle gripper \n')
         self.angle_gripper((target_loc[0], target_loc[1], rect[2]))
         # Grab the block
-        print('\n lower arm \n')
+        # print('\n lower arm \n')
         self.move_arm((target_loc[0], target_loc[1], target_loc[2]), time_delay=1.5)
-        print('\n close gripper \n')
+        # print('\n close gripper \n')
         self.close_gripper()
         # lift block up
-        print('\n lift block up')
+        # print('\n lift block up')
         self.move_arm((target_loc[0], target_loc[1], target_loc[2] + 10), time_delay=1)
         # move block above goal location
         self.move_arm((goal_loc[0], goal_loc[1], goal_loc[2] + 8), time_delay=False)
