@@ -13,7 +13,16 @@ import time
 import Camera
 
 
-def test_motion(target_color='red'):
+def test_motion():
+
+    # Current plan:
+    # Call letter_dict['letter'][goal_coords[pos]] --> color needed
+    # Search for color
+    # Grab block
+    # Move to goal location
+    # Increment goal locations to next space to fill
+    # Fill spaces bottom to top, left to right
+
     goal_coordinates = {
         'BL': (-14, -7.5, 1.5),
         'BM': (-14, -4.5, 1.5),
@@ -25,6 +34,72 @@ def test_motion(target_color='red'):
         'TM': (-14, -4.5, 7.5),
         'TR': (-14, -1.5, 7.5)
     }
+    letter_dict = {
+        'C':{goal_coordinates['BL']: 'red',
+         goal_coordinates['BM']: 'red',
+         goal_coordinates['BR']: 'red',
+         goal_coordinates['ML']: 'red',
+         goal_coordinates['MM']: 'green',
+         goal_coordinates['MR']: 'blue',
+         goal_coordinates['TL']: 'red',
+         goal_coordinates['TM']: 'red',
+         goal_coordinates['TR']: 'red'},
+        'H': {goal_coordinates['BL']: 'red',
+         goal_coordinates['BM']: 'blue',
+         goal_coordinates['BR']: 'red',
+         goal_coordinates['ML']: 'red',
+         goal_coordinates['MM']: 'red',
+         goal_coordinates['MR']: 'red',
+         goal_coordinates['TL']: 'red',
+         goal_coordinates['TM']: 'green',
+         goal_coordinates['TR']: 'red'},
+         'I': {goal_coordinates['BL']: 'red',
+         goal_coordinates['BM']: 'red',
+         goal_coordinates['BR']: 'red',
+         goal_coordinates['ML']: 'blue',
+         goal_coordinates['MM']: 'red',
+         goal_coordinates['MR']: 'green',
+         goal_coordinates['TL']: 'red',
+         goal_coordinates['TM']: 'red',
+         goal_coordinates['TR']: 'red'},
+        'N': {goal_coordinates['BL']: 'red',
+         goal_coordinates['BM']: 'blue',
+         goal_coordinates['BR']: 'red',
+         goal_coordinates['ML']: 'red',
+         goal_coordinates['MM']: 'green',
+         goal_coordinates['MR']: 'red',
+         goal_coordinates['TL']: 'red',
+         goal_coordinates['TM']: 'red',
+         goal_coordinates['TR']: 'red'},
+        'O': {goal_coordinates['BL']: 'red',
+         goal_coordinates['BM']: 'red',
+         goal_coordinates['BR']: 'red',
+         goal_coordinates['ML']: 'red',
+         goal_coordinates['MM']: 'blue',
+         goal_coordinates['MR']: 'red',
+         goal_coordinates['TL']: 'red',
+         goal_coordinates['TM']: 'red',
+         goal_coordinates['TR']: 'red'},
+        'U': {goal_coordinates['BL']: 'red',
+         goal_coordinates['BM']: 'red',
+         goal_coordinates['BR']: 'red',
+         goal_coordinates['ML']: 'red',
+         goal_coordinates['MM']: 'blue',
+         goal_coordinates['MR']: 'red',
+         goal_coordinates['TL']: 'red',
+         goal_coordinates['TM']: 'green',
+         goal_coordinates['TR']: 'red'},
+        'Z': {goal_coordinates['BL']: 'red',
+         goal_coordinates['BM']: 'red',
+         goal_coordinates['BR']: 'red',
+         goal_coordinates['ML']: 'blue',
+         goal_coordinates['MM']: 'red',
+         goal_coordinates['MR']: 'green',
+         goal_coordinates['TL']: 'red',
+         goal_coordinates['TM']: 'red',
+         goal_coordinates['TR']: 'red'}
+        }
+
 
     my_camera = Camera.Camera()
     my_camera.camera_open()
