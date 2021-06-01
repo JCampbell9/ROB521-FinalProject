@@ -13,7 +13,8 @@ import Camera
 
 def test_motion(target_color='red'):
     goal_coordinates = {
-        'red': (-15 + 0.5, 12 - 0.5, 1.5),
+        #'red': (-15 + 0.5, 12 - 0.5, 1.5),
+        'red': (-14, -7.5, 1.5),
         'green': (-15 + 0.5, 6 - 0.5, 1.5),
         'blue': (-15 + 0.5, 0 - 0.5, 1.5),
         'stacking': (-15 + 1, -7 - 0.5, 1.5)

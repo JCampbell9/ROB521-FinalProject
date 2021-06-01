@@ -66,9 +66,13 @@ class MoveBlock:
         # move block above goal location
         self.move_arm((goal_loc[0], goal_loc[1], goal_loc[2] + 8), time_delay=False)
         # properly angle gripper
-        self.angle_gripper((goal_loc[0], goal_loc[1], -90))
+        #angle = 70 / 180 * 3.1415926
+        angle = 200
+        self.angle_gripper((False,angle))
+        #self.angle_gripper((goal_loc[0], goal_loc[1], 89))
         # lower the gripper to 3cm above the final z
         self.move_arm((goal_loc[0], goal_loc[1], goal_loc[2] + 3), time_delay=1)
+        #self.angle_gripper((False,  280))
         # set block down
         self.move_arm(goal_loc, time_delay=0.5)
         self.open_gripper()
@@ -99,9 +103,13 @@ class MoveBlock:
         :param loc: target location (x,y,z)
         :return:
         """
-        gripper_angle = getAngle(loc[0], loc[1], loc[2])
-        Board.setBusServoPulse(2, gripper_angle, 500)
-        time.sleep(0.8)
+        if loc[0] == False:
+            Board.setBusServoPulse(2, loc[-1], 500)
+            time.sleep(0.8)
+        else:
+            gripper_angle = getAngle(loc[0], loc[1], loc[2])
+            Board.setBusServoPulse(2, gripper_angle, 500)
+            time.sleep(0.8)
 
     def close_gripper(self):
         """
