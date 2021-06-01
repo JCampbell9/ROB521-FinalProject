@@ -46,7 +46,7 @@ class MoveBlock:
         self.init_pose()
         # print('\n move above block \n')
         # move above the target block
-        if not self.move_arm((target_loc[0], target_loc[1], target_loc[2]+3), time_delay=False):
+        if not self.move_arm((target_loc[0], target_loc[1], target_loc[2]+4), time_delay=False):
             # print("target location is unreachable")
             return False
         # print('\n open gripper \n')

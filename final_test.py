@@ -100,8 +100,10 @@ def write_json(updated_letter_list):
 
 
 if __name__ == '__main__':
+    
+    letter = input('what letter to construct?    ')
 
     func = LetterStacker()
-    func.main("single_stack")
+    func.main(letter)
 
 # print(stacking_info)
