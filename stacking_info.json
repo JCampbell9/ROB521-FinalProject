@@ -4,7 +4,7 @@
                       [[-14, -7.5, 7.5], [-14, -3.75, 7.5], [-14, 0.0, 7.5]]],
   "letters": {
     "C": [["red", "red", "red"],
-          ["red", "other", "other"],
+          ["other", "other", "red"],
           ["red", "red", "red"]],
 
     "H": [["red", "other", "red"],
@@ -22,6 +22,10 @@
     "N": [["red", "other", "red"],
           ["red", "other", "red"],
           ["red", "red", "red"]],
+
+    "U": [["red", "red", "red"],
+          ["red", "other", "red"],
+          ["red", "other", "red"]],
 
     "single_stack": [["red", "skip", "skip"],
                     ["red", "skip", "skip"],
