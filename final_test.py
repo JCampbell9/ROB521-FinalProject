@@ -29,6 +29,7 @@ class LetterStacker:
         self.camera_perception = CameraPerception.Perception()
         self.camera_motion = Camera_Motion.MoveBlock()
         self.goal_loc, self.letter_list = self.read_json()
+        self.other_colors = ['green', "blue"]
 
     def main(self, letter="H"):
         letter_order = self.letter_list[letter]
@@ -36,20 +37,24 @@ class LetterStacker:
             for c in range(3):
                 self.place_block(letter_order[r][c], self.goal_loc[r][c])
 
-
     def place_block(self, block_color, goal_loc):
         self.img = self.my_camera.frame
         if block_color == "skip":
             return False
+        elif block_color == "other":
+            target_color = self.other_colors[0]
+            self.other_colors = self.other_colors[1:]
+        else:
+            target_color = block_color
         while True:
             self.img = self.my_camera.frame
             if self.img is not None:
                 frame = self.img.copy()
-                Frame, coordinates, rect = self.camera_perception.main(frame, block_color)
+                Frame, coordinates, rect = self.camera_perception.main(frame, target_color)
                 cv2.imshow('Frame', Frame)
                 #print(f'\n\n MADE IT    Coordinates:  {coordinates} \n\n')
                 #print(f'\n\n target loc: {coordinates[0]}, {coordinates[1]}, 1.5 \n\n')
-                self.camera_motion.main(target_loc=(coordinates[0], coordinates[1], 1.5),goal_loc=goal_loc, rect=rect)
+                self.camera_motion.main(target_loc=(coordinates[0], coordinates[1], 1.5), goal_loc=goal_loc, rect=rect)
                 break
         #self.my_camera.camera_close()
         #cv2.destroyAllWindows()
