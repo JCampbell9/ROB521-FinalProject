@@ -35,7 +35,8 @@ def test_motion(target_color='red'):
             print(f'\n\n target loc: {coordinates[0]}, {coordinates[1]}, 1.5 \n\n')
             camera_motion.main(target_loc=(coordinates[0], coordinates[1], 1.5), goal_loc=goal_coordinates[target_color], rect=rect)
             break
-
+    my_camera.camera_close()
+    cv2.destroyAllWindows()
 
 def camera_test():
     my_camera = Camera.Camera()
