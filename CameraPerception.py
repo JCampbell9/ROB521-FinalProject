@@ -58,13 +58,13 @@ class Perception:
         #self.img_dim = self.img.shape[:2]
         self.block_coordinates = (0, 0)
 
-    def main(self, img):
+    def main(self, img, target_color=('red',)):
         """
         This main file runs the process for detecting a block in the image
         :param img: and image form the camera
         :return: an image with the added lines, and world coordinates for the center of the block
         """
-        
+        self.target_color = target_color
         self.img = img
         self.img_copy = self.img.copy()
         self.img_dim = self.img.shape[:2]

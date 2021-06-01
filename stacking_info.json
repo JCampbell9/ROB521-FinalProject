@@ -17,7 +17,11 @@
 
     "O": [["red", "red", "red"],
           ["red", "other", "red"],
-          ["red", "red", "red"]]
+          ["red", "red", "red"]],
+
+    "single_stack": [["red", "skip", "skip"],
+                    ["red", "skip", "skip"],
+                    ["red", "skip", "skip"]]
   }
 
 }
